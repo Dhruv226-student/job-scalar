@@ -60,7 +60,11 @@ A robust, scalable system to import jobs from external XML feeds, process them v
     ```bash
     npm install
     ```
-3.  Start the development server:
+3.  Create a `.env` file in the `client` directory:
+    ```env
+    NEXT_PUBLIC_API_URL=http://localhost:8000/api
+    ```
+4.  Start the development server:
     ```bash
     npm run dev
     ```

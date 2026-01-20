@@ -80,7 +80,7 @@ export default function ImportHistoryTable() {
 
   const fetchHistory = async (pageNum = 1) => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/api/jobs/history?page=${pageNum}&limit=10`);
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/jobs/history?page=${pageNum}&limit=10`);
       setLogs(data.data);
       if (data.pagination) {
         setPagination(data.pagination);
@@ -112,7 +112,7 @@ export default function ImportHistoryTable() {
   const handleFetchJobs = async () => {
     try {
       setFetching(true);
-      await axios.post('http://localhost:8000/api/jobs/import-all');
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/jobs/import-all`);
       // Small delay then refresh
       setTimeout(() => fetchHistory(1), 1000);
     } catch (error) {
