@@ -49,7 +49,7 @@ A robust, scalable system to import jobs from external XML feeds, process them v
     
     # Option 2: Cloud Redis (Render)
     # Use this Internal Connection URL in your Render Environment Variables (do not use locally)
-    REDIS_URL=redis://red-d5ngi84hg0os73df9dhg:6379
+    REDIS_URL=redis://127.0.0.1:6379
     ```
 4.  Start the server (API + Worker + Cron):
     ```bash
