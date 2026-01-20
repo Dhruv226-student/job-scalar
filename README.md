@@ -42,8 +42,14 @@ A robust, scalable system to import jobs from external XML feeds, process them v
     ```env
     PORT=8000
     MONGODB_URL=mongodb://localhost:27017/job-importer
+    
+    # Option 1: Local Redis
     REDIS_HOST=127.0.0.1
     REDIS_PORT=6379
+    
+    # Option 2: Cloud Redis (Render)
+    # Use this Internal Connection URL in your Render Environment Variables (do not use locally)
+    REDIS_URL=redis://red-d5ngi84hg0os73df9dhg:6379
     ```
 4.  Start the server (API + Worker + Cron):
     ```bash

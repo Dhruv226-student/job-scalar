@@ -1,14 +1,19 @@
 const Redis = require("ioredis");
 require("dotenv").config();
 
-// Default to local redis if env not found
 const redisOptions = {
-  host: process.env.REDIS_HOST || "127.0.0.1",
-  port: process.env.REDIS_PORT || 6379,
   maxRetriesPerRequest: null, // Required by BullMQ
+    enableReadyCheck: false,
 };
 
-const connection = new Redis(redisOptions);
+// Use REDIS_URL if available (Render), otherwise fallback to host/port (Local)
+const connection = process.env.REDIS_URL
+    ? new Redis(process.env.REDIS_URL, redisOptions)
+    : new Redis({
+        host: process.env.REDIS_HOST || "127.0.0.1",
+        port: process.env.REDIS_PORT || 6379,
+        ...redisOptions,
+    });
 
 connection.on("connect", () => {
     console.log("✅ Redis connected");
